@@ -92,7 +92,6 @@ void loop() {
     
   if (AWAKE){
     // TARDIS ROUNTINE
-
     for(int x=0; x<315; x++){
       float y = cos(x / 100.0);
       if(y > 0) { y = -y;}
@@ -104,15 +103,11 @@ void loop() {
       if (!silenced){
         if (y > 10){  
           tone(speakerPin, 200 + y + random(50));
-          if(y > 20){
-            digitalWrite(LEDpin, HIGH);
-          }
-          else{
-            digitalWrite(LEDpin, LOW);
-          }
+          analogWrite(LEDpin,y );
         }
         else{
           noTone(speakerPin);
+          digitalWrite(LEDpin, LOW);
         }
       }
       else{
@@ -125,6 +120,7 @@ void loop() {
         //Serial.println(y);
       }
     }
+    digitalWrite(LEDpin, LOW);
  
  
     counter++;
